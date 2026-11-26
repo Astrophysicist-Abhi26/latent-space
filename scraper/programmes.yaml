@@ -1,0 +1,156 @@
+# Routes Kartik can apply to himself: M.Tech and master's admissions, research-fellow / residency
+# programmes, and internship schemes. Shown in the Programmes tab; internship schemes also in Internships.
+#
+#   kind           mtech | residency | internship
+#   area           india | abroad   (which Internships column an internship scheme sits in)
+#   enrolled_only  true when only currently enrolled students can apply
+#   windows        [{label, opens, deadline, checked}] only when the dates were checked; dates YYYY-MM-DD
+#   verified       true when the link and summary were checked
+programmes:
+
+  # ── M.Tech and master's routes ─────────────────────────────────────────────
+  - id: gate-2027
+    kind: mtech
+    name: GATE 2027 — the entrance for M.Tech at IISc and the IITs
+    funder: IIT Madras (organising institute)
+    region: india
+    url: https://gate2027.iitm.ac.in
+    who: >-
+      Registration closed on 5 October 2026 (with late fee). The exam runs on 6, 7, 13, 14, 20 and 21 February 2027 and
+      results are due on 19 March 2027. For AI/ML the relevant papers are DA (Data Science and Artificial Intelligence) and CS.
+    fit: If he registered, this is the route to an IISc or IIT M.Tech in AI or data science (admissions open around March–April). If not, see the non-GATE routes below.
+    windows:
+      - {label: "GATE 2027 exam", opens: 2027-02-06, deadline: 2027-02-21, checked: "2026-11, IIT Madras notification"}
+    verified: true
+
+  - id: iisc-mtech
+    kind: mtech
+    name: IISc M.Tech — Artificial Intelligence / Computational & Data Science
+    funder: Indian Institute of Science, Bengaluru
+    region: india
+    url: https://iisc.ac.in
+    who: Admission through GATE scores (DA or CS); the application window usually opens in spring. Check the current admissions page.
+    fit: The top AI/data-science M.Tech in India, next door to strong ML and climate-science groups.
+    verified: false
+
+  - id: iit-mtech
+    kind: mtech
+    name: IIT M.Tech in AI & Data Science (IIT Bombay, Delhi, Madras, Hyderabad, Kanpur and others)
+    funder: Indian Institutes of Technology
+    region: india
+    url: https://www.google.com/search?q=IIT+M.Tech+artificial+intelligence+data+science+admission+2027
+    who: GATE-based admissions; each IIT opens its own application, and offers go through the common COAP portal.
+    fit: Several IITs now run dedicated AI/data-science M.Tech programmes — note each one's application month in the tracker.
+    verified: false
+
+  - id: cmi-msc-ds
+    kind: mtech
+    name: Chennai Mathematical Institute — M.Sc. Data Science
+    funder: CMI
+    region: india
+    url: https://www.cmi.ac.in
+    who: CMI's own entrance exam (usually in May) — no GATE needed.
+    fit: Very mathematical and ML-heavy; a strong option if he missed GATE 2027.
+    verified: false
+
+  - id: isi-mtech-cs
+    kind: mtech
+    name: ISI Kolkata — M.Tech in Computer Science
+    funder: Indian Statistical Institute
+    region: india
+    url: https://www.isical.ac.in
+    who: ISI's own admission test (usually in May) — no GATE needed.
+    fit: Statistics and ML depth that suits his Bayesian / Gaussian-process background.
+    verified: false
+
+  - id: iiith-pgee
+    kind: mtech
+    name: IIIT Hyderabad — MS by Research / M.Tech (PGEE)
+    funder: IIIT Hyderabad
+    region: india
+    url: https://www.iiit.ac.in
+    who: IIIT-H's own PGEE entrance; research-oriented master's with strong ML groups.
+    fit: Paid research master's — close to a job, without committing to a PhD.
+    verified: false
+
+  # ── Research-fellow and residency programmes ───────────────────────────────
+  - id: anthropic-fellows
+    kind: residency
+    name: Anthropic Fellows Program (AI safety, security, ML systems, RL)
+    funder: Anthropic
+    region: global
+    url: https://alignment.anthropic.com/2025/anthropic-fellows-program-2026
+    who: >-
+      A paid, full-time, four-month research fellowship with Anthropic mentors: weekly stipend of 3,850 USD /
+      2,310 GBP / 4,300 CAD plus about 15k USD a month of compute. No PhD, prior ML experience or papers required;
+      applications are reviewed on a rolling basis. One listing requires work authorisation in the US, UK or Canada
+      (no visa sponsorship) — check the current posting.
+    fit: His Bayesian/uncertainty and PyTorch research is exactly the "can execute on research" profile they ask for.
+    verified: true
+
+  - id: msr-india-rf
+    kind: residency
+    name: Microsoft Research India — Research Fellows Program (Bengaluru)
+    funder: Microsoft Research India
+    region: india
+    url: https://www.microsoft.com/en-us/research/academic-program/research-fellows-program-at-microsoft-research-india/
+    who: >-
+      For people who have completed a BS/BE/BTech or MS/ME/MTech; you must have graduated by the time you join, PhD
+      students and graduates are not eligible, and non-CS backgrounds are encouraged. Fellows spend 1–2 years on research.
+    fit: The classic India route into AI research without a PhD — apply in his final year so he can join after graduating.
+    verified: true
+
+  - id: google-predoc
+    kind: residency
+    name: Google Research India — pre-doctoral researcher roles
+    funder: Google Research / Google DeepMind India
+    region: india
+    url: https://research.google
+    who: One- to two-year research roles for recent graduates; check Google's careers site for the current call.
+    fit: Same idea as the Microsoft programme; ML for climate and science fits Google's India research areas.
+    verified: false
+
+  - id: openai-residency
+    kind: residency
+    name: OpenAI Residency
+    funder: OpenAI
+    region: global
+    url: https://openai.com/careers
+    who: A paid programme that brings researchers and engineers from other fields into AI research; check whether a round is open.
+    fit: Designed for people switching into AI from physics, maths and other sciences.
+    verified: false
+
+  # ── Internship schemes ─────────────────────────────────────────────────────
+  - id: msr-india-intern
+    kind: internship
+    area: india
+    name: Microsoft Research India internships
+    funder: Microsoft Research India
+    region: india
+    url: https://www.microsoft.com/en-us/research/lab/microsoft-research-india/
+    who: Research internships for students; check eligibility for his final year.
+    fit: Bengaluru research internship in ML.
+    enrolled_only: true
+    verified: false
+
+  - id: gsoc
+    kind: internship
+    area: abroad
+    name: Google Summer of Code (open-source ML projects, remote)
+    funder: Google
+    region: global
+    url: https://summerofcode.withgoogle.com
+    who: Paid, remote open-source projects with mentoring organisations (many in ML and scientific Python); applications usually in spring.
+    fit: A remote way to add ML engineering to his CV — e.g. GPy, PyMC or climate-data projects.
+    verified: false
+
+  - id: iisc-ml-projects
+    kind: internship
+    area: india
+    name: IISc project associate / research assistant roles in ML
+    funder: Indian Institute of Science
+    region: india
+    url: https://iisc.ac.in
+    who: Paid project positions advertised by IISc departments (CDS, CSA, EECS, climate science); collected daily in the Jobs tab.
+    fit: A bridge to an M.Tech application, in Bengaluru.
+    verified: false

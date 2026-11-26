@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+node_modules/
+.DS_Store
+# written by the daily run and published with the site, never committed
+docs/jobs.json
+notify/
+scraper/cache/*.json
+
+# Android build output
+android/.gradle/
+android/app/build/
+android/build/

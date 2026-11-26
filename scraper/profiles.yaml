@@ -1,0 +1,145 @@
+# Research profiles — one shared database of positions, ranked differently per profile.
+#
+# A profile never changes what is collected or how it is tagged; it only changes the
+# ranking. The site has a profile picker; ?p=<id> in the address opens a profile
+# directly, and the "Tune" panel lets you adjust a copy of any profile in the browser.
+# The formula is documented at the top of scraper/profiles.py and mirrored in
+# docs/score.js (tests/test_profiles.py checks that both give identical scores).
+#
+# Keys
+#   label, blurb   shown in the picker
+#   interests      taxonomy node -> weight 0-100, or a level name below. A node is a field
+#                  (micro, drug, immuno, molbio, genomics, biotech, health, org, ops, life)
+#                  or a sub-field (micro.amr, ...; see scraper/taxonomy.py). The MOST SPECIFIC
+#                  node listed wins. A position with no positively weighted topic scores 0.
+#   cross_field    share of the best weight from a second field that is added
+#   kinds          bonus by position type: phd, internship, fellowship, technician, scientist, other,
+#                  postdoc, faculty (postdoc and faculty posts are dropped by scraper/site.yaml anyway)
+#   sectors        bonus by sector: academic, industry, ai-bio, public-health, nonprofit
+#   labs           bonus by lab type: wet, hybrid, dry, unknown
+#   regions        bonus by region: europe, india, north-america, asia-pacific, middle-east,
+#                  africa, latin-america, remote, unknown
+#   coding         added when the role needs substantial programming (usually negative)
+#   senior         added for senior roles (5+ years post-PhD, principal, director ...)
+#   needs_phd      added when a job (not a PhD position) asks for a PhD and does not accept an MSc
+#   visa           bonus by visa line: sponsors, no-sponsorship, unknown
+#   cv             points for a perfect match with the CV text in scraper/cv/<id>.txt (0-1 scaled)
+#   llm            +/- points from the optional Claude fit check (needs ANTHROPIC_API_KEY)
+#   network        organisation/location pattern -> bonus (lower-case, accents removed; first match counts)
+#   network_label  how that bonus is named on the cards
+#   search         terms and places used by the "Search elsewhere" tab (LinkedIn, Google Jobs ...)
+#
+# Level names: top 100 · very_high 85 · high 70 · medium 45 · low 20 · none 0 · avoid -40
+
+default: kartik
+
+profiles:
+
+  kartik:
+    label: "Kartik — AI/ML for science: internships, jobs, residencies"
+    blurb: >-
+      Built from his CV: probabilistic ML and Gaussian processes, deep learning and transformers, forecasting,
+      AI for climate and physics, plus LLMs and AI safety. Internships, research-fellow and residency programmes
+      first, then entry-level ML / research-engineer / data roles; frontier AI labs get a boost. India, remote and
+      abroad all count; roles that need a PhD or senior experience are pushed down.
+    interests:
+      ml: high
+      ml.prob: top
+      ml.dl: 92
+      ml.core: 88
+      ml.llm: 85
+      ml.safety: 80
+      ml.eng: 62
+      ml.rl: 60
+      ml.cv: 55
+      ds: 75
+      ds.ts: 90
+      ds.ds: 75
+      sci: 70
+      sci.climate: 95
+      sci.physics: 85
+      sci.bio: 40
+      quant: 60
+      quant.research: 70
+      math: 60
+      math.math: 70
+      swe: 20
+    cross_field: 0.25
+    kinds: {internship: 20, technician: 14, fellowship: 14, scientist: 10, other: 6, phd: -60, postdoc: -60, faculty: -60}
+    sectors: {ai-lab: 14, tech: 8, quant: 6, ai-bio: 4, academic: 4, industry: 2, nonprofit: 2}
+    labs: {wet: -20, hybrid: 0, dry: 4, unknown: 0}
+    regions: {india: 12, remote: 10, north-america: 6, europe: 6, asia-pacific: 4, middle-east: 0, africa: 0, latin-america: 0, unknown: 0}
+    coding: 6
+    senior: -30
+    needs_phd: -25
+    visa: {sponsors: 6, no-sponsorship: -25, unknown: 0}
+    cv: 25
+    llm: 10
+    network_label: "Near Pune or Bengaluru"
+    network:
+      "bengaluru|bangalore|pune": 6
+    search:
+      terms: ["machine learning intern", "AI research intern", "research engineer intern", "machine learning engineer new grad",
+              "data scientist fresher", "applied scientist intern", "research fellow machine learning", "quantitative researcher",
+              "Gaussian process", "climate AI"]
+      places: ["India", "Bengaluru", "Pune", "Remote", "London", "San Francisco", "Europe", "Singapore"]
+
+  labs:
+    label: "Frontier AI labs first (Anthropic, OpenAI, DeepMind …)"
+    blurb: Everything at frontier AI labs and AI companies rises to the top — internships, fellowships and early-career roles.
+    interests: {ml: high, ml.core: 90, ml.llm: 90, ml.safety: 90, ml.dl: 85, ml.prob: 80, ml.eng: 75, ml.rl: 75, ds: 60, sci: 50, math: 50}
+    cross_field: 0.3
+    kinds: {internship: 20, fellowship: 18, technician: 12, scientist: 10, other: 6, phd: -60, postdoc: -60, faculty: -60}
+    sectors: {ai-lab: 35, tech: 15, quant: 0, academic: -5}
+    regions: {india: 6, remote: 8, north-america: 6, europe: 6}
+    senior: -30
+    needs_phd: -25
+    cv: 15
+
+  india:
+    label: "India first (Bengaluru, Pune and remote)"
+    blurb: Roles and internships in India and remote ones open to India rise to the top.
+    interests: {ml: high, ml.prob: 90, ml.dl: 88, ml.core: 88, ml.llm: 80, ds: 80, sci: 70, quant: 60, math: 50}
+    cross_field: 0.25
+    kinds: {internship: 18, technician: 14, fellowship: 12, scientist: 10, other: 8, phd: -60, postdoc: -60, faculty: -60}
+    regions: {india: 28, remote: 14, asia-pacific: 2}
+    senior: -30
+    needs_phd: -25
+    cv: 15
+    network_label: "Near Pune or Bengaluru"
+    network:
+      "bengaluru|bangalore|pune": 10
+
+  science:
+    label: "AI for climate & physics"
+    blurb: Machine learning for weather, climate, earth systems and physics — closest to his thesis and CAPE-Net.
+    interests: {sci.climate: top, sci.physics: 90, ml.prob: 90, ds.ts: 90, ml.dl: 75, ml.core: 60, ds: 50, ml: 40}
+    cross_field: 0.2
+    kinds: {internship: 18, technician: 14, fellowship: 14, scientist: 10, other: 6, phd: -60, postdoc: -60, faculty: -60}
+    regions: {india: 10, remote: 8, europe: 8, north-america: 6}
+    senior: -30
+    needs_phd: -25
+    cv: 20
+
+  quant:
+    label: "Quant research & trading"
+    blurb: Quantitative researcher and trader roles — probability, statistics and fast maths.
+    interests: {quant: top, quant.research: top, math.math: 85, ds.ds: 70, ml.prob: 70, ml.core: 50}
+    cross_field: 0.2
+    kinds: {internship: 18, scientist: 12, technician: 8, other: 8, phd: -60, postdoc: -60, faculty: -60}
+    sectors: {quant: 25}
+    regions: {india: 10, europe: 6, asia-pacific: 6, north-america: 6}
+    senior: -30
+    needs_phd: -20
+    cv: 8
+
+  explore:
+    label: "Explore all AI, data and quant roles"
+    blurb: Every ML, data and quant topic counts about the same.
+    interests: {ml: 70, ds: 65, sci: 60, quant: 55, math: 50, swe: 30}
+    cross_field: 0.2
+    kinds: {internship: 14, technician: 10, fellowship: 10, scientist: 8, other: 6, phd: -60, postdoc: -60, faculty: -60}
+    regions: {india: 8, remote: 8}
+    senior: -25
+    needs_phd: -20
+    cv: 8

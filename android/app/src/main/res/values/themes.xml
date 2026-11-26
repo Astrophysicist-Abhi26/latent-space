@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.LatentSpace" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/darkfield</item>
+        <item name="android:statusBarColor">@color/darkfield</item>
+        <item name="android:navigationBarColor">@color/darkfield</item>
+        <item name="android:colorAccent">#FF5AA2</item>
+    </style>
+</resources>

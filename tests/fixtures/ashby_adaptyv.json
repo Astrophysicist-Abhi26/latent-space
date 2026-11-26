@@ -1,0 +1,12 @@
+{"jobs": [
+ {"id": "32b4fe9e-cd0a-4600-bea3-2fe44ff781fb", "title": "Senior Scientist, Production", "location": "Lausanne, Switzerland", "isListed": true,
+  "descriptionPlain": "Adaptyv is building an automated lab that lets AI agents run biology experiments. This is not a lab technician position: a senior scientist who owns assay quality, data QC and controls, and production troubleshooting across the experimental pipeline. Protein expression, binding assays, wet-lab biology.",
+  "publishedAt": "2026-11-12T09:00:00.000+00:00", "jobUrl": "https://jobs.ashbyhq.com/adaptyv/32b4fe9e-cd0a-4600-bea3-2fe44ff781fb"},
+ {"id": "7116a0f0-0326-45a6-9356-829b1519932f", "title": "Lab Operations Associate", "location": "Lausanne, Switzerland", "isListed": true,
+  "descriptionPlain": "A hands-on, in-the-lab role: reconstituting and aliquoting target proteins, buffer prep, plate handling, instrument maintenance and lab safety. Based in Lausanne, or willing to relocate.",
+  "publishedAt": "2026-11-08T09:00:00.000+00:00", "jobUrl": "https://jobs.ashbyhq.com/adaptyv/7116a0f0-0326-45a6-9356-829b1519932f"},
+ {"id": "d15ab16a-2a89-43e5-b8c1-46e1badef5f2", "title": "Data Scientist, Lab & Protein Data", "location": "Lausanne, Switzerland", "isListed": true,
+  "descriptionPlain": "Build the data science layer of our foundry: data quality, bioinformatics and dataset building. Strong Python and machine learning skills; you don't need to be a bench scientist.",
+  "publishedAt": "2026-11-05T09:00:00.000+00:00", "jobUrl": "https://jobs.ashbyhq.com/adaptyv/d15ab16a-2a89-43e5-b8c1-46e1badef5f2"},
+ {"id": "00000000-0000-0000-0000-000000000000", "title": "Unlisted role", "location": "Lausanne", "isListed": false, "descriptionPlain": "hidden", "jobUrl": "https://jobs.ashbyhq.com/adaptyv/0"}
+]}

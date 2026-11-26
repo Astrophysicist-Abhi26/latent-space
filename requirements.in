@@ -1,0 +1,8 @@
+# The libraries Latent Space uses directly. requirements.txt pins the exact versions
+# (these and what they pull in) that the daily GitHub Action installs.
+requests
+beautifulsoup4
+pyyaml
+python-dateutil
+feedparser
+pytest

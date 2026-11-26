@@ -1,0 +1,153 @@
+# Latent Space — company job boards (frontier AI labs, AI companies, AI for science, quant)
+#
+# Read through each board's public API (sources_ats.py). Every role a company lists is
+# fetched; only machine-learning, data and quant roles are kept.
+#
+# ats       greenhouse | lever | ashby | workable | workday
+# slug      the board name in the API URL   (workday: host, tenant, site, queries)
+# group     ai-lab (frontier AI lab) | tech (AI & tech company) | quant | ai-bio (AI for biology) | nonprofit
+# country   ISO-2 fallback when a role names no location
+# verified  true = the board was seen live in Nov 2026. false = the company's usual board name,
+#           not yet confirmed: `python scraper/doctor.py --probe <slug>` finds the right one.
+
+companies:
+- name: Anthropic
+  ats: greenhouse
+  slug: anthropic
+  group: ai-lab
+  verified: true
+  note: Research engineer/scientist roles, internships and the Anthropic Fellows Program
+- name: OpenAI
+  ats: ashby
+  slug: openai
+  group: ai-lab
+  verified: false
+  note: Residency, research and engineering roles
+- name: Google DeepMind
+  ats: greenhouse
+  slug: deepmind
+  group: ai-lab
+  verified: false
+  note: board name to confirm with doctor.py --probe deepmind
+- name: xAI
+  ats: greenhouse
+  slug: xai
+  group: ai-lab
+  verified: false
+- name: Mistral AI
+  ats: lever
+  slug: mistral
+  group: ai-lab
+  verified: false
+  country: FR
+- name: Cohere
+  ats: ashby
+  slug: cohere
+  group: ai-lab
+  verified: false
+- name: Axiom Math
+  ats: ashby
+  slug: axiom
+  group: ai-lab
+  verified: false
+  note: AI for mathematics; board name to confirm
+- name: Hugging Face
+  ats: workable
+  slug: huggingface
+  group: tech
+  verified: false
+- name: Scale AI
+  ats: greenhouse
+  slug: scaleai
+  group: tech
+  verified: false
+- name: Databricks
+  ats: greenhouse
+  slug: databricks
+  group: tech
+  verified: false
+- name: Perplexity
+  ats: ashby
+  slug: perplexity
+  group: tech
+  verified: false
+- name: Together AI
+  ats: greenhouse
+  slug: togetherai
+  group: tech
+  verified: false
+- name: Runway
+  ats: greenhouse
+  slug: runwayml
+  group: tech
+  verified: false
+- name: ElevenLabs
+  ats: ashby
+  slug: elevenlabs
+  group: tech
+  verified: false
+- name: NVIDIA
+  ats: workday
+  host: nvidia.wd5.myworkdayjobs.com
+  tenant: nvidia
+  site: NVIDIAExternalCareerSite
+  queries:
+  - machine learning intern
+  - deep learning
+  - AI research
+  group: tech
+  verified: false
+- name: Tower Research Capital
+  ats: greenhouse
+  slug: towerresearchcapital
+  group: quant
+  verified: false
+  note: quant research roles in India and abroad
+- name: Isomorphic Labs
+  ats: greenhouse
+  slug: isomorphiclabs
+  group: ai-bio
+  verified: true
+  note: London, Lausanne, Cambridge MA; in vitro pharmacology, biologics and translational biology roles
+- name: Lila Sciences
+  ats: greenhouse
+  slug: lilasciences
+  group: ai-bio
+  verified: true
+  note: autonomous science platform with a Life Science Research team
+- name: Profluent
+  ats: greenhouse
+  slug: profluent
+  group: ai-bio
+  verified: true
+- name: Latent Labs
+  ats: ashby
+  slug: latentlabs
+  group: ai-bio
+  country: GB
+  verified: true
+- name: Axiom Bio
+  ats: ashby
+  slug: axiombio
+  group: ai-bio
+  verified: true
+- name: Recursion
+  ats: greenhouse
+  slug: recursionpharmaceuticals
+  group: ai-bio
+  verified: false
+- name: Generate:Biomedicines
+  ats: greenhouse
+  slug: generatebiomedicines
+  group: ai-bio
+  verified: false
+- name: Arc Institute
+  ats: greenhouse
+  slug: arcinstitute
+  group: ai-bio
+  verified: false
+- name: Biohub (Chan Zuckerberg)
+  ats: greenhouse
+  slug: biohub
+  group: ai-bio
+  verified: true

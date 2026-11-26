@@ -1,0 +1,57 @@
+# Latent Space — job boards and feeds
+#
+# One entry = one source = one line in the site's "Sources" tab.
+# Company job boards are in companies.yaml; institute notice pages in institutes.yaml.
+#
+# type
+#   rss        RSS / Atom feed. `parser` = madgex | mpg | jobrxiv | labelled | wordpress | generic
+#              (see sources_feeds.py). A URL containing {q} is fetched once per `queries` entry.
+#   euraxess   EURAXESS search pages (facets in the URL), read page by page up to max_pages
+#   links      a page listing links to job pages; `href` = regex for those links,
+#              `org_from_href` = regex whose group 1 is the employer slug
+#
+# Optional on every entry
+#   group         heading in the Sources tab
+#   country       ISO-2 code used when a posting does not say where it is
+#   kind / sector default position type / sector for this source
+#   topics + keep_untagged: true   keep postings whose text names no field (institute pages)
+#   include / exclude              regex on the title
+#   min_expected  health turns amber below this many postings
+#   verified      how / when the URL was confirmed. "no" means it follows the board's
+#                 documented pattern but was not tested live: if it fails, the Sources tab
+#                 shows it amber (not red) and `python scraper/doctor.py` tells you more.
+#   enabled: false  parked (doctor.py --all still tests it)
+
+sources:
+- name: Hacker News — Who is hiring? (latest monthly thread)
+  type: hn
+  group: Worldwide · startups & tech
+  url: https://news.ycombinator.com/submitted?id=whoishiring
+  max_items: 700
+  verified: no — uses HN's public Algolia API; confirm with doctor.py
+  note: Hundreds of roles every month, many remote or open to interns; only ML, data and quant roles are kept.
+  sector: tech
+- name: Times Higher Education Jobs
+  type: rss
+  parser: madgex
+  group: Europe · academic
+  url: https://www.timeshighereducation.com/unijobs/jobsrss/?keywords={q}
+  queries:
+  - machine learning
+  - data scientist
+  - research software engineer
+  - research assistant machine learning
+  min_expected: 5
+  verified: 2026-11 — feed URL pattern seen live (Harvard TagTeam hub)
+- name: Nature Careers
+  type: rss
+  parser: madgex
+  group: Europe · academic
+  url: https://www.nature.com/naturecareers/jobsrss/?keywords={q}
+  queries:
+  - machine learning
+  - data scientist
+  - research engineer
+  - climate machine learning
+  min_expected: 20
+  verified: 2026-11 — jobsrss/?keywords= used in production by abu85/bioinfo-jobs-hub

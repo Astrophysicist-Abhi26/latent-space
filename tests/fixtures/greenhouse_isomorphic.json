@@ -1,0 +1,34 @@
+{
+ "jobs": [
+  {
+   "id": 6131996004,
+   "title": "Senior Scientist (In vitro / Cellular Pharmacology), Cambridge, MA",
+   "absolute_url": "https://job-boards.greenhouse.io/isomorphiclabs/jobs/6131996004",
+   "location": {
+    "name": "Cambridge, MA"
+   },
+   "updated_at": "2026-11-15T10:00:00-05:00",
+   "content": "&lt;p&gt;Design biological screening cascades for peptide drug design programmes: biophysical, biochemical and cell-based functional assays; quantitative in vitro pharmacology.&lt;/p&gt;"
+  },
+  {
+   "id": 5701803004,
+   "title": "Senior Scientist / Research Scientist (Biologics), London",
+   "absolute_url": "https://job-boards.greenhouse.io/isomorphiclabs/jobs/5701803004",
+   "location": {
+    "name": "London"
+   },
+   "updated_at": "2026-11-14T10:00:00-05:00",
+   "content": "&lt;p&gt;Lead the hands-on design, optimisation and experimental validation of novel large-molecule therapeutics (antibodies, protein binders) with our generative AI design engine.&lt;/p&gt;"
+  },
+  {
+   "id": 6131996099,
+   "title": "Research Intern, Experimental Biology (Summer 2027)",
+   "absolute_url": "https://job-boards.greenhouse.io/isomorphiclabs/jobs/6131996099",
+   "location": {
+    "name": "London, UK"
+   },
+   "updated_at": "2026-11-20T10:00:00+00:00",
+   "content": "&lt;p&gt;A 12-week internship in our London wet lab: mammalian cell culture, cell-based assays and imaging to test AI-designed molecules. Open to students currently enrolled in a Master's or PhD programme in cell biology, biochemistry or a related field.&lt;/p&gt;"
+  }
+ ]
+}

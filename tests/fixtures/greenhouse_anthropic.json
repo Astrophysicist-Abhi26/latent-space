@@ -1,0 +1,67 @@
+{
+ "jobs": [
+  {
+   "id": 5285250008,
+   "title": "Research Scientist, Life Sciences (Experimental Biology)",
+   "absolute_url": "https://job-boards.greenhouse.io/anthropic/jobs/5285250008",
+   "location": {
+    "name": "San Francisco, CA"
+   },
+   "updated_at": "2026-11-18T10:00:00-05:00",
+   "first_published": "2026-11-16T10:00:00-05:00",
+   "content": "&lt;p&gt;The team combines cutting-edge AI with hands-on biological research.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Design, execute, and iterate on the experimental programs at the core of the team&amp;#39;s research: molecular biology, biochemistry, protein and nucleic acid characterization, high-throughput functional screens, and assay development.&lt;/li&gt;&lt;li&gt;Have a Ph.D. in a biological science (molecular biology, biochemistry, bioengineering, computational biology) or a related field.&lt;/li&gt;&lt;li&gt;Familiarity with biological databases (UniProt, GenBank, PDB) and computational biology tools.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We do sponsor visas! However, we aren&amp;#39;t able to successfully sponsor visas for every role and every candidate.&lt;/p&gt;"
+  },
+  {
+   "id": 5357739008,
+   "title": "Research Scientist, Computational Biology",
+   "absolute_url": "https://job-boards.greenhouse.io/anthropic/jobs/5357739008",
+   "location": {
+    "name": "San Francisco, CA"
+   },
+   "updated_at": "2026-11-12T10:00:00-05:00",
+   "content": "&lt;p&gt;Deep computational biology expertise with frontier AI. Strong proficiency in Python; machine learning; metagenomics, single-cell genomics or protein design. PhD in computational biology or bioinformatics.&lt;/p&gt;"
+  },
+  {
+   "id": 5900000001,
+   "title": "Software Engineer, Infrastructure",
+   "absolute_url": "https://job-boards.greenhouse.io/anthropic/jobs/5900000001",
+   "location": {
+    "name": "San Francisco, CA | New York City, NY"
+   },
+   "updated_at": "2026-11-10T10:00:00-05:00",
+   "content": "&lt;p&gt;Kubernetes, Go, distributed systems.&lt;/p&gt;"
+  },
+  {
+   "id": 5066977008,
+   "title": "Research Scientist, Biosecurity",
+   "absolute_url": "https://job-boards.greenhouse.io/anthropic/jobs/5066977008",
+   "location": {
+    "name": "London, UK"
+   },
+   "updated_at": "2026-11-05T10:00:00-05:00",
+   "content": "&lt;p&gt;A PhD in molecular biology, virology, microbiology, biochemistry or a related life sciences field. Deep expertise in modern biology including high-throughput measurement, functional assays, gene synthesis, genome editing and strain construction. Experience with dual-use research and biosafety (BSL-3).&lt;/p&gt;"
+  },
+  {
+   "id": 5100000001,
+   "title": "Research Engineer Intern, Machine Learning (Summer 2027)",
+   "absolute_url": "https://job-boards.greenhouse.io/anthropic/jobs/5100000001",
+   "location": {
+    "name": "London, UK"
+   },
+   "updated_at": "2026-11-24T10:00:00+00:00",
+   "first_published": "2026-11-16T10:00:00-05:00",
+   "content": "&lt;p&gt;Work with researchers on large language model training and interpretability in PyTorch. Open to students graduating in 2027.&lt;/p&gt;"
+  },
+  {
+   "id": 5100000002,
+   "title": "Anthropic Fellows Program \u2014 AI Safety Fellow",
+   "absolute_url": "https://job-boards.greenhouse.io/anthropic/jobs/5100000002",
+   "location": {
+    "name": "London, UK; Berkeley, CA"
+   },
+   "updated_at": "2026-11-24T10:00:00+00:00",
+   "first_published": "2026-11-16T10:00:00-05:00",
+   "content": "&lt;p&gt;A four-month, full-time, paid fellowship on AI safety research with mentorship and compute. You don't need a PhD.&lt;/p&gt;"
+  }
+ ]
+}

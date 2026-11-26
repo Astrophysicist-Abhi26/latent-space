@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Latent Space · AI/ML internships, jobs &amp; M.Tech for Kartik Khurana</title>
+<meta name="description" content="AI and machine-learning internships, jobs, research-fellow programmes and M.Tech routes in India and worldwide — Anthropic, OpenAI, DeepMind and more — collected every morning and ranked for Kartik Khurana.">
+<meta name="theme-color" content="#070B1F">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500..700&family=Manrope:wght@400..800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="bg" aria-hidden="true"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<header class="top">
+  <a class="brand" href="./" aria-label="Latent Space home"><img src="icon.svg" alt="" width="40" height="40"><span class="wordmark">Latent Space<small>AI · ML · Physics</small></span></a>
+  <div class="controls">
+    <label class="profile"><span>Ranking</span> <select id="profile" aria-label="Ranking profile"></select></label>
+    <button id="tune-btn" class="btn ghost" aria-expanded="false" aria-controls="tune">Tune</button>
+    <button id="theme-btn" class="btn ghost icon" aria-label="Change theme">◐</button>
+    <a id="appbtn" class="btn app" href="#" hidden>Android app</a>
+  </div>
+</header>
+
+<div id="tune" class="tune" hidden>
+  <div class="tune-head"><b>Tune this ranking</b> <span class="muted">Saved in this browser only.</span>
+    <button class="link" id="tune-reset">Reset</button> <button class="link" id="tune-close">Close</button></div>
+  <div id="tune-body"></div>
+</div>
+
+<section class="hero" aria-label="Today for Kartik">
+  <div class="hero-text">
+    <p class="kicker">✦ fresh AI/ML openings every morning for Kartik Khurana ✦</p>
+    <h1 id="hello">Hello, Kartik!</h1>
+    <p id="today" class="today">Sampling the latent space…</p>
+    <p class="ask">Where to next?</p>
+    <div id="discs" class="discs" role="group" aria-label="Quick searches"></div>
+    <p id="status" class="status"></p>
+  </div>
+  <figure class="plate">
+    <div class="halo" aria-hidden="true"></div>
+    <img src="kartik.svg?v=1" width="420" height="420" alt="Illustrated portrait of Kartik Khurana with tousled dark hair, grey-green glasses and a full beard, in a bottle-green polo, set in a nebula with a neural network, a ringed planet and a glowing Gaussian-process plot">
+    <span class="sticker s1" aria-hidden="true">🪐</span><span class="sticker s2" aria-hidden="true">🧠</span><span class="sticker s3" aria-hidden="true">⚛️</span><span class="sticker s4" aria-hidden="true">✨</span>
+    <figcaption><b>Kartik Khurana</b><span>BS-MS Physics + Data Science, IISER Pune · Gaussian processes, deep learning &amp; AI for climate</span></figcaption>
+  </figure>
+</section>
+
+<nav class="tabs" role="tablist">
+  <button role="tab" data-tab="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg><span>Top picks</span></button>
+  <button role="tab" data-tab="internships"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span>Internships</span></button>
+  <button role="tab" data-tab="jobs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v12H4z"/><path d="M9 7V4h6v3M4 12h16"/></svg><span>Jobs &amp; fellowships</span></button>
+  <button role="tab" data-tab="labs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg><span>AI labs</span></button>
+  <button role="tab" data-tab="programmes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg><span>M.Tech &amp; programmes</span></button>
+  <button role="tab" data-tab="tracker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><span>My tracker</span> <span id="tcount" class="count"></span></button>
+  <button role="tab" data-tab="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><span>Search elsewhere</span></button>
+  <button role="tab" data-tab="sources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Sources</span></button>
+</nav>
+<p id="blurb" class="blurb"></p>
+
+<main>
+  <section id="view-positions" class="view">
+    <aside id="filters" class="filters" aria-label="Filters"></aside>
+    <div class="results">
+      <h2 id="listhead" class="listhead">Top picks</h2>
+      <div class="toolbar">
+        <input id="q" type="search" placeholder="Search title, lab, place or topic — try “Gaussian process”   ( / )" aria-label="Search positions">
+        <select id="sort" aria-label="Sort by">
+          <option value="match">Best match</option><option value="deadline">Deadline soonest</option>
+          <option value="newest">Newest</option><option value="org">Organisation A–Z</option>
+        </select>
+        <button id="ftoggle" class="btn ghost" aria-controls="filters">Filters</button>
+      </div>
+      <p id="count" aria-live="polite"></p>
+      <div id="list"></div>
+      <button id="more" class="btn ghost" hidden>Show more</button>
+    </div>
+  </section>
+
+  <section id="view-tracker" class="view" hidden>
+    <div class="tracker-head">
+      <h2>Applications</h2>
+      <p class="muted">Kept on this device only; nothing is uploaded. <b>Export backup</b> keeps a copy or moves it to another device.</p>
+      <div class="row">
+        <button class="btn" id="ics">Add deadlines to my calendar</button>
+        <button class="btn ghost" id="export">Export backup</button>
+        <label class="btn ghost">Import backup <input type="file" id="import" accept="application/json,.json" hidden></label>
+      </div>
+    </div>
+    <div id="board" class="board"></div>
+    <form id="add-form" class="add">
+      <h3>Add a position by hand</h3>
+      <p class="muted">For posts seen on LinkedIn, X, mailing lists or by word of mouth. To put one on the site for everyone, use <a id="addpos-link" href="#">Add a position</a> on GitHub.</p>
+      <div class="grid2">
+        <label>Title <input name="title" required></label>
+        <label>Link <input name="url" type="url" placeholder="https://"></label>
+        <label>Organisation <input name="org"></label>
+        <label>Location <input name="location"></label>
+        <label>Deadline <input name="deadline" type="date"></label>
+        <label>Notes <input name="notes"></label>
+      </div>
+      <button class="btn" type="submit">Add to tracker</button>
+    </form>
+  </section>
+
+  <section id="view-internships" class="view" hidden><div id="internships"></div></section>
+  <section id="view-programmes" class="view" hidden><div id="programmes"></div></section>
+  <section id="view-search" class="view" hidden><div id="search"></div></section>
+  <section id="view-sources" class="view" hidden><div id="sources"></div></section>
+</main>
+
+<footer>
+  <p>Latent Space reads public job adverts every morning from job boards, EURAXESS, institute notice pages and companies’
+  official job-board APIs, respecting each site’s robots.txt. Always check the details on the original advert.
+  Built for Kartik by his senior Abhishek. ✦ In machine learning a latent space is where the hidden structure lives — may it hold the right opening.</p>
+  <nav><a id="repo-link" href="https://github.com/">How it works</a><a id="addpos-foot" href="#">Add a position</a><a id="app-link" href="#">Android app</a></nav>
+</footer>
+<script src="score.js"></script>
+<script src="bg.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

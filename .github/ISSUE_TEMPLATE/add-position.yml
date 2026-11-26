@@ -1,0 +1,35 @@
+name: Add a position
+description: Put a postdoc or job you found (LinkedIn, X, a mailing list, a PI's website) on the site.
+title: "[Add] "
+labels: [add-position]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        The position appears on the site a few minutes after you submit, pinned near the top, and stays
+        until you close this issue (close it once the deadline has passed or the post is filled).
+  - type: input
+    id: title
+    attributes: {label: Position title}
+    validations: {required: true}
+  - type: input
+    id: url
+    attributes: {label: Link to the posting, placeholder: "https://"}
+    validations: {required: true}
+  - type: input
+    id: org
+    attributes: {label: Organisation}
+  - type: input
+    id: location
+    attributes: {label: Location, placeholder: "City, Country"}
+  - type: input
+    id: deadline
+    attributes: {label: Application deadline, placeholder: "YYYY-MM-DD"}
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of position
+      options: [PhD position, Internship, Postdoc, Fellowship, Scientist (industry or institute), Research assistant / technician, Faculty / group leader, Other]
+  - type: textarea
+    id: notes
+    attributes: {label: Notes, description: "Who posted it, what to emphasise, contact person…"}

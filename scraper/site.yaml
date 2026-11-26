@@ -1,0 +1,10 @@
+# Latent Space: who this site is for and which position types it keeps.
+title: Latent Space
+person: Kartik Khurana
+first_name: Kartik
+tagline: AI/ML internships, jobs and M.Tech routes, curated for Kartik Khurana
+cv: cv/kartik.txt
+# "ai": a posting counts when it involves machine learning, data science or quant work
+domain: ai
+# He is not looking for a PhD, and postdoc/faculty posts need one.
+drop_kinds: [phd, postdoc, faculty]

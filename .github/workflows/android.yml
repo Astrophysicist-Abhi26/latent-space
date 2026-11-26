@@ -1,0 +1,47 @@
+name: Build Android app
+
+# Builds LatentSpace.apk and publishes it on the Releases page, where
+# https://github.com/<you>/<repo>/releases/latest/download/LatentSpace.apk always points
+# to the newest build. Run it from the Actions tab after renaming the repository, or
+# when android/ changes.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["android/**", ".github/workflows/android.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build the APK
+        run: |
+          export JAVA_HOME="${JAVA_HOME_17_X64:-$JAVA_HOME}"
+          owner=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          site="https://${owner}.github.io/${GITHUB_REPOSITORY#*/}/"
+          echo "The app opens $site"
+          curl -fsSL --retry 3 -o /tmp/gradle.zip https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
+          unzip -q /tmp/gradle.zip -d /tmp
+          cd android
+          /tmp/gradle-8.11.1/bin/gradle --no-daemon --stacktrace assembleRelease \
+            -PsiteUrl="$site" -PversionCode="${{ github.run_number }}"
+          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/LatentSpace.apk"
+
+      - name: Publish on the Releases page
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "app-${{ github.run_number }}" LatentSpace.apk \
+            --title "Latent Space for Android, build ${{ github.run_number }}" \
+            --notes "Open this page on the phone, tap LatentSpace.apk, and allow installing apps from your browser when Android asks." \
+            --latest

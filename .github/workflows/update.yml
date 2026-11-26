@@ -1,0 +1,116 @@
+name: Update positions and publish
+
+# Every morning at 07:00 IST, on demand (Actions tab -> Run workflow), when the code
+# changes, and when someone opens or closes an "Add a position" issue.
+on:
+  schedule:
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scraper/**", "docs/**", "tests/**", "requirements.txt", ".github/workflows/update.yml"]
+  issues:
+    types: [opened, edited, closed, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.event_name != 'issues' || contains(github.event.issue.labels.*.name, 'add-position')
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    outputs:
+      pages: ${{ steps.pages.outputs.enabled }}
+    steps:
+      - uses: actions/checkout@v7
+
+      # Publishing needs Settings -> Pages -> Source: "GitHub Actions". Until then the run
+      # still collects and tests, and says so here.
+      - name: Is GitHub Pages switched on?
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/${GITHUB_REPOSITORY}/pages" >/dev/null 2>&1; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::GitHub Pages is off. Settings -> Pages -> Source: GitHub Actions, then run this workflow again."
+          fi
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # Detail pages already read and Claude fit checks already made are kept between runs.
+      - name: Restore caches
+        uses: actions/cache@v6
+        with:
+          path: scraper/cache
+          key: lh-cache-${{ github.run_id }}
+          restore-keys: lh-cache-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Yesterday's state (first-seen dates, "new" badges, source health) is read back from
+      # the live site rather than from a committed file. First run: nothing to restore.
+      - name: Restore previous state from the live site
+        if: steps.pages.outputs.enabled == 'true'
+        run: |
+          owner=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          repo="${GITHUB_REPOSITORY#*/}"
+          url="https://${owner}.github.io/${repo}/jobs.json?t=$(date +%s)"
+          if curl -fsSL --retry 3 "$url" -o /tmp/prev.json && python -c "import json;json.load(open('/tmp/prev.json'))"; then
+            cp /tmp/prev.json docs/jobs.json && echo "state restored from $url"
+          else
+            echo "::notice::no previous state at $url (first run?)"
+          fi
+
+      # Offline tests. If they fail the job stops and the live site keeps its current data.
+      - name: Run tests
+        run: python -m pytest -q tests
+
+      - name: Collect, classify and rank
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # optional: Claude fit check
+          GH_TOKEN: ${{ github.token }}                         # reads "Add a position" issues
+        run: python scraper/scrape.py
+
+      - uses: actions/configure-pages@v6
+        if: steps.pages.outputs.enabled == 'true'
+      - uses: actions/upload-pages-artifact@v5
+        if: steps.pages.outputs.enabled == 'true'
+        with:
+          path: docs
+
+      # New good matches and newly broken sources -> a comment on the "digest" issue ->
+      # e-mail to whoever watches it. Never allowed to stop the deploy.
+      - name: Daily digest
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scraper/digest.py
+
+  deploy:
+    needs: update
+    if: needs.update.outputs.pages == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v5

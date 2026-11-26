@@ -1,0 +1,13 @@
+# Positions you want pinned on the site (always shown, score at least 60 where relevant).
+# Faster alternative: open an "Add a position" issue on GitHub — it appears within minutes.
+#
+# positions:
+#   - title: Postdoc in carbapenem resistance genomics
+#     url: https://example.org/jobs/123
+#     org: Example University Medical Centre
+#     location: Amsterdam, Netherlands
+#     deadline: 2027-01-15
+#     kind: postdoc
+#     notes: Seen on LinkedIn, posted by the PI
+
+positions: []

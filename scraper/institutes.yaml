@@ -1,0 +1,28 @@
+# Latent Space — institute notice pages, read by the generic extractor (sources_web.py)
+#
+# An item is kept when a link and its block (table row, list item, paragraph) look like a
+# job notice: a job word ("Project Scientist", "Research Associate", "Postdoc", "Advt") and,
+# usually, a date. Indian notice boards rarely name the research field in the title, so
+# these sources keep untagged items as "Life sciences (general)".
+#
+# Keys: name, url / urls, group, org, location, country, title_cells (table rows: how many
+# leading cells make the title), skip_if (regex on the block: e.g. closed notices),
+# include / exclude (regex on the title), href_filter, insecure_ok (server ships a broken
+# TLS chain: read anyway — public pages only), undated_ok, min_expected, verified, enabled.
+#
+# Test every entry against the live sites:  python scraper/doctor.py --only institutes
+
+sources:
+- name: IISc — contract & project staff
+  url: https://www.iisc.ac.in/careers/contract-project-staff
+  group: India
+  org: Indian Institute of Science (IISc)
+  location: Bengaluru, India
+  country: IN
+  title_cells: 2
+  skip_if: \bClosed\b
+  topics:
+  - life.general
+  keep_untagged: true
+  min_expected: 0
+  verified: 2026-11 — table seen live (post, department, advertisement, closing date dd.mm.yyyy, status)

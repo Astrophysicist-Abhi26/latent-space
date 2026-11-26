@@ -1,0 +1,16 @@
+name: Suggest a source
+description: A job board, institute page or company careers page that Latent Space should read every day.
+title: "[Source] "
+labels: [source]
+body:
+  - type: input
+    id: name
+    attributes: {label: Name, placeholder: "e.g. Swiss TPH careers"}
+    validations: {required: true}
+  - type: input
+    id: url
+    attributes: {label: Page or feed URL}
+    validations: {required: true}
+  - type: textarea
+    id: why
+    attributes: {label: Why it matters, description: "What kind of positions appear there?"}
